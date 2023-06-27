@@ -14,7 +14,7 @@ public class TestEntity {
     @Indexed
     String text;
     Integer number;
-    @Indexed()
+    @Indexed(expireAfter = "21d")
     Long createdAt;
 
     public TestEntity() {
