@@ -1,9 +1,8 @@
 spring:
   data:
     mongodb:
-#      authentication-database: admin
-        host=localhost
-        database=vacancies_db
-        username=analytics_service
-        password=password
+        host: localhost
+        database: vacancies_db
+        username: analytics_service
+        password: password
 

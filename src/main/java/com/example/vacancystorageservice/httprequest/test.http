@@ -1,0 +1,17 @@
+GET http://localhost:8080/test/save?text=phyton&number=24
+Accept: application/json
+
+###
+GET http://localhost:8080/test/save?text=java&number=23
+Accept: application/json
+
+###
+GET http://localhost:8080/test/save?text=java&number=22
+Accept: application/json
+
+###
+
+GET http://localhost:8080/test/select?text=java
+Accept: application/json
+
+###

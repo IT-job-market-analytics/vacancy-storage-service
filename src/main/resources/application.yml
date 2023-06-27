@@ -1,12 +1,7 @@
 spring:
   data:
     mongodb:
-      authentication-database: vacancies_db
-      username: analytics_service
-      password: password
-      database: vacancies_db
       port: 27017
-      host: localhost
       auto-index-creation: true
 
 

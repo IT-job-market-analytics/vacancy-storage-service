@@ -1,7 +1,6 @@
 package com.example.vacancystorageservice.service;
 
 import com.example.vacancystorageservice.model.TestEntity;
-import com.example.vacancystorageservice.repository.TestEntityRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -18,15 +17,16 @@ public class TestEntityService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public List<TestEntity> getSelectedTestEntity(String text) {
+    public List<TestEntity> getSelected(String text) {
         Query query = new Query();
         query.addCriteria(Criteria.where("text").is(text));
-        List<TestEntity> testEntities = mongoTemplate.find(query, TestEntity.class);
 
-        if (testEntities.isEmpty()) {
-            System.out.println("no one records in mongoDB with text: " + text);
-        }
+        return mongoTemplate.find(query, TestEntity.class);
+    }
 
-        return testEntities;
+    public TestEntity save(String text, Integer number){
+        TestEntity testEntity = new TestEntity(text, number);
+        mongoTemplate.save(testEntity);
+        return testEntity;
     }
 }
