@@ -14,8 +14,8 @@ public class TestEntity {
     @Indexed
     String text;
     Integer number;
-    @Indexed(expireAfter = "21d")
-    Long createdAt;
+    @Indexed(expireAfter = "30s")
+    LocalDateTime createdAt;
 
     public TestEntity() {
     }
@@ -23,7 +23,8 @@ public class TestEntity {
     public TestEntity(String text, Integer number) {
         this.text = text;
         this.number = number;
-        createdAt = System.currentTimeMillis();
+
+        createdAt = LocalDateTime.now();
     }
 
     public String getText() {
@@ -42,11 +43,11 @@ public class TestEntity {
         this.number = number;
     }
 
-    public Long getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Long createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
