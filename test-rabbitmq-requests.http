@@ -7,6 +7,6 @@ Authorization: Basic YW5hbHl0aWNzX3NlcnZpY2U6cGFzc3dvcmQ=
     "content-type": "application/json"
   },
   "routing_key": "imported-vacancies-queue",
-  "payload":  "test message",
+  "payload":  "{\"id\":\"82631531\",\"name\":\"Стажер-разработчик\"}",
   "payload_encoding": "string"
 }

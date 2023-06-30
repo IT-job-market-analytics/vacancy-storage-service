@@ -21,7 +21,7 @@ public class Config {
         return new Queue(nameQueue);
     }
 
-/*    @Bean
+    @Bean
     public MessageConverter converter() {
         return new Jackson2JsonMessageConverter();
     }
@@ -31,5 +31,5 @@ public class Config {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(converter());
         return rabbitTemplate;
-    }*/
+    }
 }

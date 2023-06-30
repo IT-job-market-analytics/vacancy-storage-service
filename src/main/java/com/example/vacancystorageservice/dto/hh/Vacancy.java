@@ -198,4 +198,26 @@ public class Vacancy {
     public void setQuery(String query) {
         this.query = query;
     }
+
+    @Override
+    public String toString() {
+        return "Vacancy{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", area=" + area +
+                ", salary=" + salary +
+                ", type=" + type +
+                ", responseUrl=" + responseUrl +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", archived=" + archived +
+                ", alternateUrl='" + alternateUrl + '\'' +
+                ", employer=" + employer +
+                ", snippet=" + snippet +
+                ", experience=" + experience +
+                ", employment=" + employment +
+                ", additionalProperties=" + additionalProperties +
+                ", query='" + query + '\'' +
+                '}';
+    }
 }
