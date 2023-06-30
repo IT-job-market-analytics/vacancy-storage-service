@@ -1,0 +1,9 @@
+spring:
+  rabbitmq:
+    host: localhost
+    username: analytics_service
+    password: password
+
+rabbitmq:
+  queue:
+    name: imported-vacancies-queue
