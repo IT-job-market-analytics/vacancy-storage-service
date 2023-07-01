@@ -4,6 +4,13 @@ spring:
     username: analytics_service
     password: password
 
+  data:
+    mongodb:
+      host: localhost
+      database: vacancies_db
+      username: analytics_service
+      password: password
+
 rabbitmq:
   queue:
     name: imported-vacancies-queue

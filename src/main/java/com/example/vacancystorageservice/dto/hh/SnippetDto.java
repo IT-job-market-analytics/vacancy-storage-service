@@ -11,7 +11,7 @@ import java.util.Map;
         "requirement",
         "responsibility"
 })
-public class Snippet {
+public class SnippetDto {
 
     @JsonProperty("requirement")
     private String requirement;

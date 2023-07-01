@@ -12,7 +12,7 @@ import java.util.Map;
         "90",
         "240"
 })
-public class LogoUrls {
+public class LogoUrlsDto {
 
     @JsonProperty("original")
     private String original;

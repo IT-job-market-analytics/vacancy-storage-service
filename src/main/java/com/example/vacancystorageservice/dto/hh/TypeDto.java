@@ -11,7 +11,7 @@ import java.util.Map;
         "id",
         "name"
 })
-public class Type {
+public class TypeDto {
 
     @JsonProperty("id")
     private String id;
@@ -48,5 +48,14 @@ public class Type {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        return "TypeDto{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                '}';
     }
 }

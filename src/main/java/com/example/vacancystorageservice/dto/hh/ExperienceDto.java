@@ -11,7 +11,7 @@ import java.util.Map;
         "id",
         "name"
 })
-public class Experience {
+public class ExperienceDto {
 
     @JsonProperty("id")
     private String id;
@@ -48,5 +48,14 @@ public class Experience {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        return "ExperienceDto{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                '}';
     }
 }
