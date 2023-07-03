@@ -2,19 +2,19 @@ package com.example.vacancystorageservice.converter;
 
 import com.example.vacancystorageservice.dto.hh.VacancyDto;
 import com.example.vacancystorageservice.model.Vacancy;
-import org.modelmapper.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.AbstractConverter;
+import org.modelmapper.Converter;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Component
+@Slf4j
 public class VacancyConverter {
-    private final static Logger LOGGER = LoggerFactory.getLogger(VacancyConverter.class);
-
     ModelMapper modelMapper;
 
     public VacancyConverter(ModelMapper modelMapper) {
@@ -39,7 +39,7 @@ public class VacancyConverter {
         modelMapper.getConfiguration().setSkipNullEnabled(true);
 
         Vacancy vacancyModel = modelMapper.map(vacancyDto, Vacancy.class);
-        LOGGER.info("Convert VacancyDTO to VacancyModel: " + vacancyModel);
+        log.info("Convert VacancyDTO to VacancyModel: " + vacancyModel);
         return vacancyModel;
     }
 }
