@@ -21,7 +21,7 @@ public class Consumer {
     @RabbitListener(queues = "${rabbitmq.queue.name}")
     public void consume(VacancyDto vacancyDto){
         LOGGER.info("Received message ... -> " + vacancyDto);
-        vacancyService.save(vacancyDto);
+        vacancyService.convertAndSave(vacancyDto);
     }
 
 }

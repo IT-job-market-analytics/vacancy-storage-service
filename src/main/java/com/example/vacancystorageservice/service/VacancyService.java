@@ -24,7 +24,8 @@ public class VacancyService {
         this.vacancyRepository = vacancyRepository;
     }
 
-    public Vacancy save(VacancyDto vacancyDto) {
+    @SuppressWarnings("UnusedReturnValue")
+    public Vacancy convertAndSave(VacancyDto vacancyDto) {
         Vacancy vacancyModel = vacancyConverter.fromDtoToModel(vacancyDto);
         vacancyRepository.save(vacancyModel);
         LOGGER.info("Save to MongoDB: " + vacancyModel);
