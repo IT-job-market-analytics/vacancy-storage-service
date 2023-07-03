@@ -2,6 +2,7 @@ package com.example.vacancystorageservice.converter;
 
 import com.example.vacancystorageservice.dto.hh.VacancyDto;
 import com.example.vacancystorageservice.model.Vacancy;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
@@ -21,11 +22,12 @@ public class VacancyConverter {
         this.modelMapper = modelMapper;
     }
 
-    public Vacancy fromDtoToModel(VacancyDto vacancyDto){
-        TypeMap<VacancyDto, Vacancy> typeMap = modelMapper.createTypeMap(VacancyDto.class, Vacancy.class);
-
-        // map id fields
-        typeMap.addMapping(VacancyDto::getId, Vacancy::setHhId);
+    @PostConstruct
+    public void initMapping() {
+        TypeMap<VacancyDto, Vacancy> typeMap = modelMapper.getTypeMap(VacancyDto.class, Vacancy.class);
+        if (typeMap == null) {
+            typeMap = modelMapper.createTypeMap(VacancyDto.class, Vacancy.class);
+        }
 
         // convert string to LocalDateTime
         Converter<String, LocalDateTime> toLocalDateTime = new AbstractConverter<>() {
@@ -37,7 +39,9 @@ public class VacancyConverter {
         typeMap.addMappings(mapper -> mapper.using(toLocalDateTime).map(VacancyDto::getPublishedAt, Vacancy::setPublishedAt));
 
         modelMapper.getConfiguration().setSkipNullEnabled(true);
+    }
 
+    public Vacancy fromDtoToModel(VacancyDto vacancyDto){
         Vacancy vacancyModel = modelMapper.map(vacancyDto, Vacancy.class);
         log.info("Convert VacancyDTO to VacancyModel: " + vacancyModel);
         return vacancyModel;
