@@ -17,9 +17,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Vacancy {
     @Id
-    private String Id;
+    private String id;
     @Indexed
-    private String hhId;
     private String name;
     private String areaName;
     private int salaryFrom;
