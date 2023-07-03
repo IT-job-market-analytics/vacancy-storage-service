@@ -26,7 +26,7 @@ public class Vacancy {
     private int salaryTo;
     private String typeName;
     private String responseUrl;
-    @Indexed(expireAfter = "30s")
+    @Indexed(expireAfter = "21d")
     private LocalDateTime publishedAt;
     private LocalDateTime createdAt;
     private Boolean archived;
