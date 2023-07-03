@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class VacancyConverter {
-
     private final static Logger LOGGER = LoggerFactory.getLogger(VacancyConverter.class);
 
     ModelMapper modelMapper;
@@ -23,14 +22,13 @@ public class VacancyConverter {
     }
 
     public Vacancy fromDtoToModel(VacancyDto vacancyDto){
-
         TypeMap<VacancyDto, Vacancy> typeMap = modelMapper.createTypeMap(VacancyDto.class, Vacancy.class);
 
         // map id fields
         typeMap.addMapping(VacancyDto::getId, Vacancy::setHhId);
 
         // convert string to LocalDateTime
-        Converter<String, LocalDateTime> toLocalDateTime = new AbstractConverter<String, LocalDateTime>() {
+        Converter<String, LocalDateTime> toLocalDateTime = new AbstractConverter<>() {
             @Override
             protected LocalDateTime convert(String s) {
                 return LocalDateTime.parse(s, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
