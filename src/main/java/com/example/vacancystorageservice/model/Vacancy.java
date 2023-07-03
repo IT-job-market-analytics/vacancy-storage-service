@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Document
 @Data
@@ -20,19 +22,20 @@ public class Vacancy {
     private String id;
     @Indexed
     private String name;
-    private String areaName;
-    private int salaryFrom;
-    private int salaryTo;
-    private String typeName;
-    private String responseUrl;
+    private Area area;
+    private Salary salary;
+    private Type type;
+    private Object responseUrl;
     @Indexed(expireAfter = "21d")
     private LocalDateTime publishedAt;
     private LocalDateTime createdAt;
     private Boolean archived;
     private String alternateUrl;
-    private String employerName;
-    private String experienceName;
-    private String employmentName;
+    private Employer employer;
+    private Snippet snippet;
+    private Experience experience;
+    private Employment employment;
+    private Map<String, Object> additionalProperties = new LinkedHashMap<>();
     @Indexed
     private String query;
 }

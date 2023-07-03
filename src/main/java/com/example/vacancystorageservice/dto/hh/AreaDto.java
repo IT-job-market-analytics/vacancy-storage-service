@@ -65,7 +65,7 @@ public class AreaDto {
 
     @Override
     public String toString() {
-        return "AreaDto{" +
+        return "Area{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
