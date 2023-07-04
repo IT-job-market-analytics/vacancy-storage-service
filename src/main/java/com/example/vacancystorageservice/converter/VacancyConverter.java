@@ -33,7 +33,8 @@ public class VacancyConverter {
         Converter<String, LocalDateTime> toLocalDateTime = new AbstractConverter<>() {
             @Override
             protected LocalDateTime convert(String s) {
-                return LocalDateTime.parse(s, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+                return LocalDateTime.parse(s, formatter);
             }
         };
         typeMap.addMappings(mapper -> mapper.using(toLocalDateTime).map(VacancyDto::getPublishedAt, Vacancy::setPublishedAt));
