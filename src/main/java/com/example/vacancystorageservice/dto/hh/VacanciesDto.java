@@ -18,10 +18,10 @@ import java.util.Map;
         "arguments",
         "alternate_url"
 })
-public class Vacancies {
+public class VacanciesDto {
 
     @JsonProperty("items")
-    private List<Vacancy> vacancies;
+    private List<VacancyDto> vacancies;
     @JsonProperty("found")
     private Integer found;
     @JsonProperty("pages")
@@ -40,12 +40,12 @@ public class Vacancies {
     private Map<String, Object> additionalProperties = new LinkedHashMap<>();
 
     @JsonProperty("items")
-    public List<Vacancy> getItems() {
+    public List<VacancyDto> getItems() {
         return vacancies;
     }
 
     @JsonProperty("items")
-    public void setItems(List<Vacancy> vacancies) {
+    public void setItems(List<VacancyDto> vacancies) {
         this.vacancies = vacancies;
     }
 
@@ -127,5 +127,20 @@ public class Vacancies {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        return "VacanciesDto{" +
+                "vacancies=" + vacancies +
+                ", found=" + found +
+                ", pages=" + pages +
+                ", perPage=" + perPage +
+                ", page=" + page +
+                ", clusters=" + clusters +
+                ", arguments=" + arguments +
+                ", alternateUrl='" + alternateUrl + '\'' +
+                ", additionalProperties=" + additionalProperties +
+                '}';
     }
 }

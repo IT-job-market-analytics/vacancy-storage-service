@@ -7,17 +7,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Vacancy {
+public class VacancyDto {
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("area")
-    private Area area;
-    @JsonProperty("salary")
-    private Object salary;
+    @JsonProperty("areaDto")
+    private AreaDto areaDto;
+    @JsonProperty("salaryDto")
+    private SalaryDto salaryDto;
     @JsonProperty("type")
-    private Type type;
+    private TypeDto typeDto;
     @JsonProperty("response_url")
     private Object responseUrl;
     @JsonProperty("published_at")
@@ -29,13 +29,13 @@ public class Vacancy {
     @JsonProperty("alternate_url")
     private String alternateUrl;
     @JsonProperty("employer")
-    private Employer employer;
+    private EmployerDto employer;
     @JsonProperty("snippet")
-    private Snippet snippet;
+    private SnippetDto snippet;
     @JsonProperty("experience")
-    private Experience experience;
+    private ExperienceDto experience;
     @JsonProperty("employment")
-    private Employment employment;
+    private EmploymentDto employment;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<>();
     @JsonProperty("query")
@@ -60,34 +60,33 @@ public class Vacancy {
         this.name = name;
     }
 
-    @JsonProperty("area")
-    public Area getArea() {
-        return area;
+    @JsonProperty("areaDto")
+    public AreaDto getArea() {
+        return areaDto;
     }
 
-    @JsonProperty("area")
-    public void setArea(Area area) {
-        this.area = area;
+    @JsonProperty("areaDto")
+    public void setArea(AreaDto areaDto) {
+        this.areaDto = areaDto;
+    }
+    @JsonProperty("salary")
+    public SalaryDto getSalaryDto() {
+        return salaryDto;
     }
 
     @JsonProperty("salary")
-    public Object getSalary() {
-        return salary;
-    }
-
-    @JsonProperty("salary")
-    public void setSalary(Object salary) {
-        this.salary = salary;
+    public void setSalaryDto(SalaryDto salary) {
+        this.salaryDto = salary;
     }
 
     @JsonProperty("type")
-    public Type getType() {
-        return type;
+    public TypeDto getType() {
+        return typeDto;
     }
 
     @JsonProperty("type")
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(TypeDto typeDto) {
+        this.typeDto = typeDto;
     }
 
     @JsonProperty("response_url")
@@ -141,42 +140,42 @@ public class Vacancy {
     }
 
     @JsonProperty("employer")
-    public Employer getEmployer() {
+    public EmployerDto getEmployer() {
         return employer;
     }
 
     @JsonProperty("employer")
-    public void setEmployer(Employer employer) {
+    public void setEmployer(EmployerDto employer) {
         this.employer = employer;
     }
 
     @JsonProperty("snippet")
-    public Snippet getSnippet() {
+    public SnippetDto getSnippet() {
         return snippet;
     }
 
     @JsonProperty("snippet")
-    public void setSnippet(Snippet snippet) {
+    public void setSnippet(SnippetDto snippet) {
         this.snippet = snippet;
     }
 
     @JsonProperty("experience")
-    public Experience getExperience() {
+    public ExperienceDto getExperience() {
         return experience;
     }
 
     @JsonProperty("experience")
-    public void setExperience(Experience experience) {
+    public void setExperience(ExperienceDto experience) {
         this.experience = experience;
     }
 
     @JsonProperty("employment")
-    public Employment getEmployment() {
+    public EmploymentDto getEmployment() {
         return employment;
     }
 
     @JsonProperty("employment")
-    public void setEmployment(Employment employment) {
+    public void setEmployment(EmploymentDto employment) {
         this.employment = employment;
     }
 
@@ -201,12 +200,12 @@ public class Vacancy {
 
     @Override
     public String toString() {
-        return "Vacancy{" +
+        return "VacancyDto{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", area=" + area +
-                ", salary=" + salary +
-                ", type=" + type +
+                ", areaDto=" + areaDto +
+                ", salaryDto=" + salaryDto +
+                ", typeDto=" + typeDto +
                 ", responseUrl=" + responseUrl +
                 ", publishedAt='" + publishedAt + '\'' +
                 ", createdAt='" + createdAt + '\'' +

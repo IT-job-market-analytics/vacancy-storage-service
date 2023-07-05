@@ -1,19 +1,23 @@
 package com.example.vacancystorageservice.rabbitmq;
 
-import com.example.vacancystorageservice.dto.hh.Vacancy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.vacancystorageservice.dto.hh.VacancyDto;
+import com.example.vacancystorageservice.service.VacancyService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class Consumer {
+    final VacancyService vacancyService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
-
-    @RabbitListener(queues = "${rabbitmq.queue.name}")
-    public void consume(Vacancy vacancy){
-        LOGGER.info("Received message ... -> " + vacancy);
+    public Consumer(VacancyService vacancyService) {
+        this.vacancyService = vacancyService;
     }
 
+    @RabbitListener(queues = "${rabbitmq.queue.name}")
+    public void consume(VacancyDto vacancyDto){
+        log.info("Received message ... -> " + vacancyDto);
+        vacancyService.convertAndSave(vacancyDto);
+    }
 }

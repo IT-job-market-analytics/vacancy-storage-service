@@ -17,7 +17,7 @@ import java.util.Map;
         "accredited_it_employer",
         "trusted"
 })
-public class Employer {
+public class EmployerDto {
 
     @JsonProperty("id")
     private String id;
@@ -28,7 +28,7 @@ public class Employer {
     @JsonProperty("alternate_url")
     private String alternateUrl;
     @JsonProperty("logo_urls")
-    private LogoUrls logoUrls;
+    private LogoUrlsDto logoUrls;
     @JsonProperty("vacancies_url")
     private String vacanciesUrl;
     @JsonProperty("accredited_it_employer")
@@ -79,12 +79,12 @@ public class Employer {
     }
 
     @JsonProperty("logo_urls")
-    public LogoUrls getLogoUrls() {
+    public LogoUrlsDto getLogoUrls() {
         return logoUrls;
     }
 
     @JsonProperty("logo_urls")
-    public void setLogoUrls(LogoUrls logoUrls) {
+    public void setLogoUrls(LogoUrlsDto logoUrls) {
         this.logoUrls = logoUrls;
     }
 
@@ -126,5 +126,20 @@ public class Employer {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public String toString() {
+        return "EmployerDto{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", alternateUrl='" + alternateUrl + '\'' +
+                ", logoUrls=" + logoUrls +
+                ", vacanciesUrl='" + vacanciesUrl + '\'' +
+                ", accreditedItEmployer=" + accreditedItEmployer +
+                ", trusted=" + trusted +
+                ", additionalProperties=" + additionalProperties +
+                '}';
     }
 }

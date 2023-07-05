@@ -2,6 +2,11 @@ spring:
   rabbitmq:
     port: 5672
 
+  data:
+    mongodb:
+      port: 27017
+      auto-index-creation: true
+
 rabbitmq:
   queue:
     name: imported-vacancies-queue
