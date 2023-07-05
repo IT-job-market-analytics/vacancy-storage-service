@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -38,6 +41,15 @@ public class VacancyConverter {
             }
         };
         typeMap.addMappings(mapper -> mapper.using(toLocalDateTime).map(VacancyDto::getPublishedAt, Vacancy::setPublishedAt));
+
+        // convert string from query to List<String> queries
+        Converter<String, List<String>> toListFromLonelyString = new AbstractConverter<String, List<String>>() {
+            @Override
+            protected List<String> convert(String s) {
+                return new ArrayList<>(Arrays.asList(s));
+            }
+        };
+        typeMap.addMappings(mapper -> mapper.using(toListFromLonelyString).map(VacancyDto::getQuery, Vacancy::setQueries));
 
         modelMapper.getConfiguration().setSkipNullEnabled(true);
     }
