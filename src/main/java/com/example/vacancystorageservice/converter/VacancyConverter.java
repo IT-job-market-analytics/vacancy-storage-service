@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 @Slf4j
@@ -43,18 +43,18 @@ public class VacancyConverter {
         typeMap.addMappings(mapper -> mapper.using(toLocalDateTime).map(VacancyDto::getPublishedAt, Vacancy::setPublishedAt));
 
         // convert string from query to List<String> queries
-        Converter<String, List<String>> toListFromLonelyString = new AbstractConverter<String, List<String>>() {
+        Converter<String, Set<String>> toSetFromLonelyString = new AbstractConverter<String, Set<String>>() {
             @Override
-            protected List<String> convert(String s) {
-                return new ArrayList<>(Arrays.asList(s));
+            protected Set<String> convert(String s) {
+                return new HashSet<>(Arrays.asList(s));
             }
         };
-        typeMap.addMappings(mapper -> mapper.using(toListFromLonelyString).map(VacancyDto::getQuery, Vacancy::setQueries));
+        typeMap.addMappings(mapper -> mapper.using(toSetFromLonelyString).map(VacancyDto::getQuery, Vacancy::setQueries));
 
         modelMapper.getConfiguration().setSkipNullEnabled(true);
     }
 
-    public Vacancy fromDtoToModel(VacancyDto vacancyDto){
+    public Vacancy fromDtoToModel(VacancyDto vacancyDto) {
         Vacancy vacancyModel = modelMapper.map(vacancyDto, Vacancy.class);
         log.info("Convert VacancyDTO to VacancyModel: " + vacancyModel);
         return vacancyModel;

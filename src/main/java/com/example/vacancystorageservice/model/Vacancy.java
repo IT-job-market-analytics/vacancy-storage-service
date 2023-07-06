@@ -10,8 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Document
 @Data
@@ -38,5 +38,5 @@ public class Vacancy {
     private Employment employment;
     private Map<String, Object> additionalProperties = new LinkedHashMap<>();
     @Indexed
-    private List<String> queries;
+    private Set<String> queries;
 }
