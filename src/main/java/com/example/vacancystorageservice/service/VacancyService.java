@@ -7,6 +7,7 @@ import com.example.vacancystorageservice.repository.VacancyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,5 +35,10 @@ public class VacancyService {
 
         log.info("Save to MongoDB: " + vacancyModel);
         return vacancyModel;
+    }
+
+    public List<Vacancy> findByQuery(String query) {
+        log.info("Service: findByQuery = " + query);
+        return vacancyRepository.findByQueries(query);
     }
 }
