@@ -43,7 +43,7 @@ public class VacancyConverter {
         typeMap.addMappings(mapper -> mapper.using(toLocalDateTime).map(VacancyDto::getPublishedAt, Vacancy::setPublishedAt));
 
         // convert string from query to List<String> queries
-        Converter<String, Set<String>> toSetFromLonelyString = new AbstractConverter<String, Set<String>>() {
+        Converter<String, Set<String>> toSetFromLonelyString = new AbstractConverter<>() {
             @Override
             protected Set<String> convert(String s) {
                 return new HashSet<>(Collections.singletonList(s));
