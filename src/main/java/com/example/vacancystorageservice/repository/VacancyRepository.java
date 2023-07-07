@@ -10,7 +10,5 @@ import java.util.List;
 
 @Repository
 public interface VacancyRepository extends MongoRepository<Vacancy, String> {
-
-    @Query("{'queries' :  :#{#query}}")
-    public List<Vacancy> findByQueries(@Param("query") String query);
+    List<Vacancy> findByQueriesContains(String query);
 }
