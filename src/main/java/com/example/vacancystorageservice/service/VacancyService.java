@@ -7,7 +7,6 @@ import com.example.vacancystorageservice.repository.VacancyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,17 +22,24 @@ public class VacancyService {
 
     @SuppressWarnings("UnusedReturnValue")
     public Vacancy convertAndSave(VacancyDto vacancyDto) {
-        Vacancy vacancyModel = vacancyConverter.fromDtoToModel(vacancyDto);
+        log.debug("Persisting vacancy #" + vacancyDto.getId());
 
-        Optional<Vacancy> vacancyExisted = vacancyRepository.findById(vacancyModel.getId());
-        if (vacancyExisted.isEmpty()) {
-            vacancyRepository.save(vacancyModel);
+        Vacancy newVacancy = vacancyConverter.fromDtoToModel(vacancyDto);
+
+        Optional<Vacancy> existingVacancy = vacancyRepository.findById(newVacancy.getId());
+        if (existingVacancy.isEmpty()) {
+            log.debug("It didn't exist before, so we save it");
+            vacancyRepository.save(newVacancy);
         } else {
-            vacancyModel.getQueries().addAll(vacancyExisted.get().getQueries());
-            vacancyRepository.save(vacancyModel);
+            log.debug("It already exists, so we append new query \"" + vacancyDto.getQuery() + "\" to it");
+
+            newVacancy.getQueries().addAll(existingVacancy.get().getQueries());
+            log.debug("Resulting queries: " + newVacancy.getQueries());
+
+            vacancyRepository.save(newVacancy);
         }
 
-        log.info("Save to MongoDB: " + vacancyModel);
-        return vacancyModel;
+        log.debug("Vacancy #" + vacancyDto.getId() + " persisted");
+        return newVacancy;
     }
 }

@@ -17,7 +17,9 @@ public class Consumer {
 
     @RabbitListener(queues = "${rabbitmq.queue.name}")
     public void consume(VacancyDto vacancyDto){
-        log.info("Received message ... -> " + vacancyDto);
+        log.debug("Received message ... -> " + vacancyDto);
         vacancyService.convertAndSave(vacancyDto);
+
+        log.info("Vacancy #" + vacancyDto.getId() + " with query = \"" + vacancyDto.getQuery() + "\" handled");
     }
 }

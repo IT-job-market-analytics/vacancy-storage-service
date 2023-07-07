@@ -56,7 +56,7 @@ public class VacancyConverter {
 
     public Vacancy fromDtoToModel(VacancyDto vacancyDto) {
         Vacancy vacancyModel = modelMapper.map(vacancyDto, Vacancy.class);
-        log.info("Convert VacancyDTO to VacancyModel: " + vacancyModel);
+        log.debug("DTO converted to model: " + vacancyModel);
         return vacancyModel;
     }
 }
