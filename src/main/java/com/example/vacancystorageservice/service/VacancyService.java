@@ -36,9 +36,4 @@ public class VacancyService {
         log.info("Save to MongoDB: " + vacancyModel);
         return vacancyModel;
     }
-
-    public List<Vacancy> findByQuery(String query) {
-        log.info("Service: findByQuery = " + query);
-        return vacancyRepository.findByQueries(query);
-    }
 }
