@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 @Slf4j
@@ -39,12 +42,21 @@ public class VacancyConverter {
         };
         typeMap.addMappings(mapper -> mapper.using(toLocalDateTime).map(VacancyDto::getPublishedAt, Vacancy::setPublishedAt));
 
+        // convert string from query to List<String> queries
+        Converter<String, Set<String>> toSetFromLonelyString = new AbstractConverter<>() {
+            @Override
+            protected Set<String> convert(String s) {
+                return new HashSet<>(Collections.singletonList(s));
+            }
+        };
+        typeMap.addMappings(mapper -> mapper.using(toSetFromLonelyString).map(VacancyDto::getQuery, Vacancy::setQueries));
+
         modelMapper.getConfiguration().setSkipNullEnabled(true);
     }
 
-    public Vacancy fromDtoToModel(VacancyDto vacancyDto){
+    public Vacancy fromDtoToModel(VacancyDto vacancyDto) {
         Vacancy vacancyModel = modelMapper.map(vacancyDto, Vacancy.class);
-        log.info("Convert VacancyDTO to VacancyModel: " + vacancyModel);
+        log.debug("DTO converted to model: " + vacancyModel);
         return vacancyModel;
     }
 }
