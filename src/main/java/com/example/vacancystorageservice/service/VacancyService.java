@@ -21,25 +21,28 @@ public class VacancyService {
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    public Vacancy convertAndSave(VacancyDto vacancyDto) {
+    public boolean convertAndSave(VacancyDto vacancyDto) {
         log.debug("Persisting vacancy #" + vacancyDto.getId());
 
         Vacancy newVacancy = vacancyConverter.fromDtoToModel(vacancyDto);
-
         Optional<Vacancy> existingVacancy = vacancyRepository.findById(newVacancy.getId());
-        if (existingVacancy.isEmpty()) {
-            log.debug("It didn't exist before, so we save it");
+
+        if (existingVacancy.isPresent() && existingVacancy.get().getQueries().contains(vacancyDto.getQuery())) {
             vacancyRepository.save(newVacancy);
+            log.debug("Vacancy and query exist, update #" + vacancyDto.getId());
+            return false;
+
+        } else if (existingVacancy.isEmpty()) {
+            vacancyRepository.save(newVacancy);
+            log.debug("It didn't exist before, so we save it");
         } else {
             log.debug("It already exists, so we append new query \"" + vacancyDto.getQuery() + "\" to it");
-
             newVacancy.getQueries().addAll(existingVacancy.get().getQueries());
-            log.debug("Resulting queries: " + newVacancy.getQueries());
-
             vacancyRepository.save(newVacancy);
+            log.debug("Resulting queries: " + newVacancy.getQueries());
         }
 
         log.debug("Vacancy #" + vacancyDto.getId() + " persisted");
-        return newVacancy;
+        return true;
     }
 }

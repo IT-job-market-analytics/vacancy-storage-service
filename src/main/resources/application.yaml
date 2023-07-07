@@ -9,4 +9,7 @@ spring:
 
 rabbitmq:
   queue:
-    name: imported-vacancies-queue
+    consumer:
+      name: imported-vacancies-queue
+    producer:
+      name: new-vacancies-queue

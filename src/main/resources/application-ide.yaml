@@ -11,10 +11,6 @@ spring:
       username: analytics_service
       password: password
 
-rabbitmq:
-  queue:
-    name: imported-vacancies-queue
-
 logging:
   level:
     org.springframework.data.mongodb.core.MongoTemplate: DEBUG

@@ -10,15 +10,20 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class Consumer {
     final VacancyService vacancyService;
+    final Producer producer;
 
-    public Consumer(VacancyService vacancyService) {
+    public Consumer(VacancyService vacancyService, Producer producer) {
         this.vacancyService = vacancyService;
+        this.producer = producer;
     }
 
     @RabbitListener(queues = "${rabbitmq.queue.name}")
     public void consume(VacancyDto vacancyDto){
         log.debug("Received message ... -> " + vacancyDto);
-        vacancyService.convertAndSave(vacancyDto);
+
+        if (vacancyService.convertAndSave(vacancyDto)) {
+            producer.send(vacancyDto);
+        }
 
         log.info("Vacancy #" + vacancyDto.getId() + " with query = \"" + vacancyDto.getQuery() + "\" handled");
     }
