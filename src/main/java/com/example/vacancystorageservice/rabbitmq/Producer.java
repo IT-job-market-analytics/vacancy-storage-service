@@ -15,7 +15,11 @@ public class Producer {
 
     AmqpTemplate amqpTemplate;
 
-        public void send(VacancyDto vacancyDto) {
+    public Producer(AmqpTemplate amqpTemplate) {
+        this.amqpTemplate = amqpTemplate;
+    }
+
+    public void send(VacancyDto vacancyDto) {
             amqpTemplate.convertAndSend(nameProducerQueue, vacancyDto);
             log.info("Vacancy #" + vacancyDto.getId() + " with query = \"" + vacancyDto.getQuery() + "\" send to RabbitMQ");
         }

@@ -17,7 +17,7 @@ public class Consumer {
         this.producer = producer;
     }
 
-    @RabbitListener(queues = "${rabbitmq.queue.name}")
+    @RabbitListener(queues = "${rabbitmq.queue.consumer.name}")
     public void consume(VacancyDto vacancyDto){
         log.debug("Received message ... -> " + vacancyDto);
 
