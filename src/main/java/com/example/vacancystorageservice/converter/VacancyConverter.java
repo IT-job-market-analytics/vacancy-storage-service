@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,7 +46,7 @@ public class VacancyConverter {
         Converter<String, Set<String>> toSetFromLonelyString = new AbstractConverter<String, Set<String>>() {
             @Override
             protected Set<String> convert(String s) {
-                return new HashSet<>(Arrays.asList(s));
+                return new HashSet<>(Collections.singletonList(s));
             }
         };
         typeMap.addMappings(mapper -> mapper.using(toSetFromLonelyString).map(VacancyDto::getQuery, Vacancy::setQueries));
