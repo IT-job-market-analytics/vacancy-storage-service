@@ -1,4 +1,4 @@
-FROM maven:3.9.1-eclipse-temurin-17-alpine
+FROM maven:3.9.1-eclipse-temurin-17-alpine AS build
 COPY /src /src
 COPY pom.xml /
 RUN mvn -f /pom.xml clean package
