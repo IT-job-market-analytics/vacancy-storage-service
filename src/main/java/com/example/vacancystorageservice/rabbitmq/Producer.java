@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class Producer {
-
     @Value("${rabbitmq.queue.producer.name}")
-    private String nameProducerQueue;
+    public String nameProducerQueue;
 
     AmqpTemplate amqpTemplate;
 
@@ -20,7 +19,6 @@ public class Producer {
     }
 
     public void send(VacancyDto vacancyDto) {
-            amqpTemplate.convertAndSend(nameProducerQueue, vacancyDto);
-            log.info("Vacancy #" + vacancyDto.getId() + " with query = \"" + vacancyDto.getQuery() + "\" send to RabbitMQ");
-        }
+        amqpTemplate.convertAndSend(nameProducerQueue, vacancyDto);
+    }
 }
