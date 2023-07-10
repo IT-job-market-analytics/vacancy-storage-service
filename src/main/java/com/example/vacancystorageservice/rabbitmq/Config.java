@@ -13,12 +13,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Config {
 
-    @Value("${rabbitmq.queue.name}")
-    private String nameQueue;
+    @Value("${rabbitmq.queue.consumer.name}")
+    private String nameConsumerQueue;
 
     @Bean
-    public Queue queue(){
-        return new Queue(nameQueue);
+    public Queue queueConsumer(){
+        return new Queue(nameConsumerQueue);
     }
 
     @Bean
