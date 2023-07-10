@@ -34,13 +34,12 @@ public class VacancyService {
 
             result = PersistenceResult.INSERTED;
         } else {
-            // log.debug("It already exists, so we append new query \"" + vacancyDto.getQuery() + "\" to it");
             Set<String> existingQueries = existingVacancy.get().getQueries();
             log.debug("It already exists with queries: " + existingQueries);
 
             if (existingQueries.contains(vacancyDto.getQuery())) {
                 log.debug("It already exists with this query");
-                result = PersistenceResult.UPDATE_WITH_EXISTING_QUERY;
+                result = PersistenceResult.UPDATED_WITH_EXISTING_QUERY;
             } else {
                 log.debug("Appending new query \"" + vacancyDto.getQuery() + "\" to it");
                 log.debug("Resulting queries: " + newVacancy.getQueries());
