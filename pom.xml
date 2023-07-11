@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>vacancy-storage-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>vacancy-storage-service</name>
     <description>vacancy-storage-service</description>
     <properties>
@@ -62,10 +62,23 @@
     </dependencies>
 
     <build>
+        <finalName>vacancy-storage-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>DataTest.java</exclude>
+                    </excludes>
+                    <includes>
+                        <include>DataCheck.java</include>
+                    </includes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
