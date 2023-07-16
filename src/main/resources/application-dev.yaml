@@ -1,7 +1,11 @@
 spring:
   rabbitmq:
     host: rabbitmq
+    username: analytics_service
+    password: password
 
   data:
     mongodb:
       host: vacancies-db
+      username: analytics_service
+      password: password

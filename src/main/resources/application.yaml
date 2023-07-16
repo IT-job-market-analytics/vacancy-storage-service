@@ -5,6 +5,7 @@ spring:
   data:
     mongodb:
       port: 27017
+      database: vacancies_db
       auto-index-creation: true
 
 rabbitmq:
